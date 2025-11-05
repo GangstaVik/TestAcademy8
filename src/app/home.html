@@ -1,0 +1,53 @@
+<router-outlet>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeCom</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Praticamente questa pagina fa da welcome con un po' di descrizione / contenuto magari ma soprattutto con la navbar che permette di andare su
+     1) visualizzazione completa dei customer con paginazione ecc oppure
+     2) visualizzazione dei prodotti però in maniera sintetica con eventuale visualizzazione dettagliata in caso di click sull'elemento -->
+<!-- This is the navbar that allows access to the Customers and Products sections through external html files -->
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Actions</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../html/customers.html">Customers</a></li>
+            <li><a class="dropdown-item" href="../html/products.html">Products</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+        </ul>
+    </li>
+</ul>
+
+<!-- Here should go some content to fill the home page a bit... I'm thinking about an image and some text on the right side of the image ;D -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="../assets/bike_home.jpg" class="img-fluid" alt="Bike Image">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h2>Welcome to BikeCom</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, labore asperiores, soluta accusamus natus incidunt tempora, totam minima unde numquam eveniet eos iste. Veritatis rerum dignissimos, natus minus delectus rem?
+                Esse, soluta reprehenderit odit numquam perferendis assumenda, enim eveniet reiciendis eligendi praesentium obcaecati quia, voluptate dolor quo expedita? Dicta laboriosam magnam expedita obcaecati odio! Ad quae placeat non ratione reiciendis?
+                Voluptatibus odit veritatis inventore cumque officia sint possimus, aliquid sequi quisquam deleniti repellendus rerum voluptatem beatae architecto ab voluptatum error reprehenderit deserunt, enim doloribus. Sed delectus incidunt animi officia exercitationem?
+                Quod repellat praesentium, tenetur culpa ratione quia vel quaerat officia voluptas! Enim iste praesentium molestias quam ipsum. Incidunt hic voluptatem mollitia, quam ipsam assumenda dicta facere temporibus deserunt libero. Odit!</p>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
+</router-outlet>

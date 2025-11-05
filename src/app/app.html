@@ -1,0 +1,86 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<router-outlet>
+    <h2 style="color: blueviolet">Binding Interpolation Samples</h2>
+    <ul>
+        <li>
+            <h2>Il quadrato di {{ sq }} è == {{ sq * sq }}</h2>
+        </li>
+        <li>
+            <h5>Nome dello sviluppatore: {{ devName }}</h5>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2 style="color: yellowgreen">Event Binding Samples</h2>
+    <button (click)="btnClickMe()">Cliccami</button>
+    <button (click)="btnClear()">Clear</button>
+    <li>{{ counter }}</li>
+
+    <input type="text" (input)="inputChange($event)" placeholder="Cambia devName" />
+
+    <hr>
+
+    <h2 style="color: darkorange">Form Sample</h2>
+    <form (submit)="onSubmit($event)">
+        <label>
+            Nome:
+            <input type="text" name="nome" placeholder="Mnginz" />
+        </label>
+
+        <label>
+            Password:
+            <input type="password" name="pw" placeholder="2hasnxaosiqm1.@lol" />
+        </label>
+
+        <button type="submit">Invia</button>
+    </form>
+
+    <hr>
+
+    <h2 style="color: darkviolet">Property Binding Samples</h2>
+    <h4>Binding dello stile inline</h4>
+    <button [disabled]="btnDisabled">Sono un pulsante disabilitato 😅</button>
+
+    <hr>
+
+    <h2 style="color: coral">Two-Way Binding Samples</h2>
+    <label>
+        Nome:
+        <input type="text" [(ngModel)]="fName" />
+    </label>
+    <p>Il nome inserito è: {{ fName }}</p>
+
+    <label>
+        <input type="checkbox" [(ngModel)]="isChecked" />
+        Accetta i termini e condizioni 😄
+    </label>
+    <p>Hai accettato i termini: {{ isChecked }}</p>
+
+    <select [(ngModel)]="selectedOption">
+        <option value="red">Rosso</option>
+        <option value="yellow">Giallo</option>
+        <option value="green">Verde</option>
+    </select>
+    <p>Scelta colore: {{ selectedOption }}</p>
+
+    
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<router-outlet />
