@@ -1,0 +1,224 @@
+/**
+ * Stili per il componente Footer
+ * Usa variabili CSS definite in styles.css
+ */
+
+/* Footer principale */
+.footer-custom {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-contrast));
+    color: white;
+    margin-top: auto;
+    /* Spinge il footer in fondo alla pagina */
+}
+
+/* Titoli nel footer */
+.footer-title {
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+/* Testo generico nel footer */
+.footer-text {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Link nel footer */
+.footer-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Effetto hover sui link */
+.footer-link:hover {
+    color: white;
+    transform: translateX(5px);
+    text-decoration: none;
+}
+
+/* Lista link nel footer */
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Singolo item della lista */
+.footer-links-list li {
+    margin-bottom: 0.75rem;
+}
+
+/* Icone nei link */
+.footer-links-list i {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Informazioni di contatto */
+.contact-info {
+    margin-top: 1rem;
+}
+
+/* Link nelle info di contatto */
+.contact-info .footer-link {
+    font-size: 0.9rem;
+}
+
+/* Container icone social */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Singola icona social */
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Effetto hover sulle icone social */
+.social-icon:hover {
+    background: white;
+    color: var(--color-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Separatore orizzontale */
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.2);
+    margin: 2rem 0;
+}
+
+/* Sezione copyright in basso */
+.footer-bottom {
+    padding: 1rem 0;
+}
+
+/* Testo copyright */
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Piccolo testo nel copyright */
+.footer-copyright small {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Bottone "Back to Top" */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+/* Effetto hover sul bottone back to top */
+.back-to-top:hover {
+    background: var(--color-warm);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 
+  RESPONSIVE - Mobile styles
+  Su schermi piccoli (< 768px)
+*/
+@media (max-width: 767.98px) {
+
+    /* Padding ridotto su mobile */
+    .footer-custom {
+        padding: 2rem 0;
+    }
+
+    /* Margine bottom maggiore tra le colonne su mobile */
+    .footer-custom .col-12 {
+        margin-bottom: 2rem;
+    }
+
+    /* Titoli più piccoli su mobile */
+    .footer-title {
+        font-size: 1.1rem;
+    }
+
+    /* Social icons centrate su mobile */
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Back to top più piccolo su mobile */
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+    }
+}
+
+/**
+ * ANIMAZIONI OPZIONALI
+ * Puoi decommentare queste per aggiungere animazioni al caricamento
+ */
+
+/*
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-custom {
+  animation: fadeInUp 0.6s ease-out;
+}
+*/
+
+/**
+ * NOTA SULLE VAR():
+ * 
+ * Le variabili CSS vengono da styles.css:
+ * - var(--color-primary): colore primario
+ * - var(--color-accent): colore accento
+ * - var(--color-warm): colore caldo
+ * - var(--color-contrast): colore contrasto
+ * 
+ * Per cambiarli, modifica styles.css
+ */

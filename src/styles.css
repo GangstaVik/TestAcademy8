@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-primary: #FFC15E; /* Set to the main brand color, e.g., the bright yellow-orange */
+  --color-strong: #F7934C; /* Use for stronger accents, like hover backgrounds */
+  --color-accent: #F7B05B; /* Secondary accent color, if needed */
+  --color-dark: #1F1300; /* Dark color for text or backgrounds */
+  --color-darker: #CC5803; /* Deep burnt orange, for active states or highlights */
+}
+
+body{
+    background-color: var(--color-dark);
+}

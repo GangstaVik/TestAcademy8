@@ -1,0 +1,493 @@
+/**
+ * Stili per il componente Customers
+ * Dashboard moderna con cards responsive
+ */
+
+/* Container principale */
+.customers-container {
+    min-height: calc(100vh - 200px);
+    /* Altezza minima meno navbar e footer */
+    padding-bottom: 3rem;
+}
+
+/* ============ DASHBOARD HEADER ============ */
+
+.dashboard-header {
+    background: linear-gradient(135deg, var(--color-contrast), var(--color-strong));
+    color: white;
+    padding: 2rem 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-accent);
+}
+
+.dashboard-subtitle {
+    margin: 0.5rem 0 0 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+}
+
+/* Azioni dashboard (ricerca e refresh) */
+.dashboard-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Box ricerca */
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary);
+    opacity: 0.6;
+}
+
+.search-box input {
+    padding-left: 45px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 0.2rem rgba(251, 139, 36, 0.25);
+}
+
+/* Bottone refresh */
+.btn-refresh {
+    background: var(--color-strong);
+    color: var(--color-dark);
+    border: 2px solid black;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-refresh:hover:not(:disabled) {
+    background: white;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.btn-refresh:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ============ STATI (Loading, Error, Empty) ============ */
+
+.loading-state,
+.error-state,
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.error-state {
+    color: var(--color-strong);
+}
+
+.error-state i {
+    color: var(--color-strong);
+}
+
+.empty-state i {
+    color: var(--color-contrast);
+}
+
+/* ============ INFO BAR ============ */
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--muted);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.customers-count {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+.filter-badge {
+    background: var(--color-accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.btn-clear-filter {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    padding: 0;
+    margin-left: 0.5rem;
+}
+
+.btn-clear-filter:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+/* ============ CUSTOMER CARDS ============ */
+
+.customer-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Header card con avatar */
+.card-header-custom {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-warm));
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Avatar con iniziali */
+.customer-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge status */
+.status-badge {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge i {
+    margin-right: 0.3rem;
+}
+
+/* Body card */
+.card-body-custom {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.customer-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.customer-company,
+.customer-email,
+.customer-phone {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.customer-company i,
+.customer-email i,
+.customer-phone i {
+    color: var(--color-accent);
+    width: 20px;
+}
+
+/* Footer card */
+.card-footer-custom {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--muted);
+    background: var(--muted);
+}
+
+.btn-view-details {
+    width: 100%;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-view-details:hover {
+    background: var(--color-strong);
+    transform: scale(1.02);
+}
+
+/* ============ MODAL DETTAGLI ============ */
+
+/* Overlay scuro */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+    padding: 1rem;
+}
+
+/* Contenuto modal */
+.modal-content-custom {
+    background: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+/* Header modal */
+.modal-header-custom {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-strong));
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header-custom h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn-close-modal {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Body modal */
+.modal-body-custom {
+    padding: 2rem;
+}
+
+/* Avatar grande nel modal */
+.detail-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-warm));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 auto 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Righe dettagli */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--muted);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--color-primary);
+    flex: 0 0 40%;
+}
+
+.detail-value {
+    flex: 1;
+    text-align: right;
+    color: #333;
+}
+
+.detail-value a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.detail-value a:hover {
+    color: var(--color-warm);
+    text-decoration: underline;
+}
+
+.detail-value code {
+    background: var(--muted);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    color: var(--color-strong);
+    font-family: 'Courier New', monospace;
+}
+
+/* Footer modal */
+.modal-footer-custom {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--muted);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* ============ ANIMAZIONI ============ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 991.98px) {
+    .dashboard-title {
+        font-size: 2rem;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        max-width: none;
+    }
+
+    .btn-refresh {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .dashboard-title {
+        font-size: 1.5rem;
+    }
+
+    .info-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .detail-value {
+        text-align: left;
+    }
+
+    .modal-footer-custom {
+        flex-direction: column;
+    }
+
+    .modal-footer-custom button {
+        width: 100%;
+    }
+}

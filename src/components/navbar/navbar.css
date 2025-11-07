@@ -1,0 +1,141 @@
+/**
+ * Stili per il componente Navbar
+ * Usa la palette del tuo progetto Angular (styles.css)
+ */
+
+/* Navbar principale con gradiente */
+.navbar-custom {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-strong));
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+/* Brand/Logo della navbar */
+.navbar-brand {
+    color: black !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Effetto hover sul brand */
+.navbar-brand:hover {
+    transform: scale(1.05);
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Icona del brand */
+.navbar-brand i {
+    font-size: 1.8rem;
+    vertical-align: middle;
+}
+
+/* Link di navigazione */
+.nav-link {
+    color: #1F1300 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 0 0.25rem;
+}
+
+/* Effetto hover sui link */
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #CC5803 !important;
+    transform: translateY(-2px);
+}
+
+/* Link attivo */
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgb(247, 7, 7, 0.9) !important;
+}
+
+/* Icone nei link */
+.nav-link i {
+    margin-right: 0.5rem;
+}
+
+/* Badge utente */
+.user-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: #1F1300;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+/* Icona utente nel badge */
+.user-badge i {
+    font-size: 1.2rem;
+}
+
+/* Bottone hamburger per mobile */
+.navbar-toggler {
+    border-color: rgba(247, 7, 7, 0.9);
+}
+
+/* Icona hamburger */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Bottone logout */
+.btn-outline-light {
+    border-color: white;
+    color: #1F1300;
+    transition: all 0.3s ease;
+}
+
+/* Hover sul bottone logout */
+.btn-outline-light:hover {
+    background: #CC5803;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* 
+  RESPONSIVE - Mobile styles
+  Su schermi piccoli (< 992px) i link vanno in verticale
+*/
+@media (max-width: 991.98px) {
+
+    /* Margine tra i link su mobile */
+    .nav-link {
+        margin: 0.25rem 0;
+    }
+
+    /* Padding ridotto per mobile */
+    .navbar-custom {
+        padding: 0.5rem 0;
+    }
+
+    /* User badge full width su mobile */
+    .user-badge {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    /* Bottone logout full width su mobile */
+    .btn-outline-light {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+/**
+ * NOTA SULLE VAR():
+ * 
+ * var(--color-primary) prende il valore da styles.css
+ * Se vuoi cambiare i colori, vai in styles.css e modifica:
+ * :root {
+ *   --color-primary: #TUOCOLORE;
+ * }
+ */

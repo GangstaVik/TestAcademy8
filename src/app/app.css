@@ -1,0 +1,301 @@
+/**
+ * Stili per il componente App principale
+ * Layout generale dell'applicazione
+ */
+
+/* ============ LAYOUT GENERALE ============ */
+
+/**
+ * Assicura che l'app occupi almeno tutta l'altezza dello schermo
+ * e il footer stia sempre in fondo
+ */
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenuto principale */
+.main-content {
+    flex: 1;
+    /* Cresce per riempire lo spazio disponibile */
+    background: linear-gradient(135deg, var(--muted), var(--surface));
+}
+
+/* ============ HOME PAGE ============ */
+
+.home-container {
+    padding: 3rem 0;
+}
+
+/* Hero section */
+.hero-section {
+    padding: 3rem 0;
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-title i {
+    color: var(--color-accent);
+    animation: bounce 2s infinite;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-strong);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Feature cards */
+.feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.feature-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.feature-card .btn {
+    margin-top: auto;
+}
+
+/* Stats section */
+.stats-section {
+    padding: 3rem 0;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card i {
+    color: var(--color-accent);
+}
+
+.stat-card h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 1rem 0;
+}
+
+.stat-card p {
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ============ ANIMAZIONI ============ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Animazione per le feature cards */
+.feature-card {
+    animation: fadeInUp 0.6s ease;
+}
+
+.feature-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Animazione per le stat cards */
+.stat-card {
+    animation: fadeInUp 0.6s ease;
+}
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+/* ============ RESPONSIVE ============ */
+
+/* Tablet */
+@media (max-width: 991.98px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .feature-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 575.98px) {
+    .home-container {
+        padding: 2rem 0;
+    }
+
+    .hero-section {
+        padding: 2rem 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .feature-card {
+        padding: 2rem;
+    }
+
+    .stat-card h2 {
+        font-size: 2rem;
+    }
+}
+
+/* ============ UTILITY CLASSES ============ */
+
+/* Testo centrato */
+.text-center {
+    text-align: center;
+}
+
+/* Margini */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Padding */
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+/* Gap per grid */
+.g-4 {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+}
+
+/**
+ * NOTA SULLE VAR():
+ * 
+ * Tutte le variabili CSS vengono da styles.css
+ * 
+ * Colori disponibili:
+ * - var(--color-primary): #5F0F40 (deep plum)
+ * - var(--color-strong): #9A031E (strong red)
+ * - var(--color-accent): #FB8B24 (bright orange)
+ * - var(--color-warm): #E36414 (warm orange)
+ * - var(--color-contrast): #0F4C5C (deep teal)
+ * 
+ * Neutri:
+ * - var(--surface): #ffffff (bianco)
+ * - var(--muted): #f4f4f6 (grigio chiaro)
+ * 
+ * Per cambiarli, modifica il file styles.css
+ */

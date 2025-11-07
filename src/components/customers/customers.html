@@ -1,0 +1,321 @@
+<!-- 
+  Template HTML del componente Customers
+  Dashboard con cards per ogni customer
+-->
+
+<div class="customers-container">
+
+    <!-- Header della dashboard -->
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Titolo -->
+                <div class="col-md-6 col-12 mb-3 mb-md-0">
+                    <h1 class="dashboard-title">
+                        <i class="fas fa-users me-2"></i>
+                        Customers Dashboard
+                    </h1>
+                    <p class="dashboard-subtitle">
+                        Manage and view all your customers
+                    </p>
+                </div>
+
+                <!-- Azioni (ricerca e refresh) -->
+                <div class="col-md-6 col-12">
+                    <div class="dashboard-actions">
+                        <!-- Input ricerca -->
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <!-- 
+                [(ngModel)] - Two-way binding
+                Sincronizza input e variabile searchTerm
+                Quando digiti, searchTerm si aggiorna automaticamente
+              -->
+                            <input type="text" [(ngModel)]="searchTerm" placeholder="Search customers..."
+                                class="form-control">
+                        </div>
+
+                        <!-- Bottone refresh -->
+                        <button class="btn btn-refresh" (click)="refresh()" [disabled]="isLoading">
+                            <i class="fas fa-sync-alt" [class.fa-spin]="isLoading"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenuto principale -->
+    <div class="container mt-4">
+
+        <!-- 
+      LOADING STATE
+      @if - Mostra questo blocco SOLO se isLoading è true
+    -->
+        @if (isLoading) {
+        <div class="loading-state">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Loading customers...</p>
+        </div>
+        }
+
+        <!-- 
+      ERROR STATE
+      @else if - Mostra questo blocco SOLO se errorMessage non è vuoto
+    -->
+        @else if (errorMessage) {
+        <div class="error-state">
+            <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+            <h3>Oops! Something went wrong</h3>
+            <p>{{ errorMessage }}</p>
+            <button class="btn btn-primary" (click)="refresh()">
+                <i class="fas fa-redo me-2"></i>
+                Try Again
+            </button>
+        </div>
+        }
+
+        <!-- 
+      SUCCESS STATE - Mostra customers
+      @else - Mostra questo se non siamo in loading e non c'è errore
+    -->
+        @else {
+
+        <!-- Info bar: numero customers trovati -->
+        <div class="info-bar">
+            <span class="customers-count">
+                <i class="fas fa-users me-2"></i>
+                Found {{ filteredCustomers.length }}
+                @if (filteredCustomers.length === 1) {
+                customer
+                } @else {
+                customers
+                }
+            </span>
+
+            <!-- Mostra filtro attivo se searchTerm non è vuoto -->
+            @if (searchTerm) {
+            <span class="filter-badge">
+                <i class="fas fa-filter me-1"></i>
+                Filtering by: "{{ searchTerm }}"
+                <button class="btn-clear-filter" (click)="searchTerm = ''" title="Clear filter">
+                    <i class="fas fa-times"></i>
+                </button>
+            </span>
+            }
+        </div>
+
+        <!-- 
+        Grid di cards customers
+        @if - Mostra questo SOLO se ci sono customers
+      -->
+        @if (filteredCustomers.length > 0) {
+        <div class="row g-4">
+            <!-- 
+            @for - Itera su filteredCustomers
+            track customer.customerId - Necessario per ottimizzazione Angular
+            
+            col-lg-4 = 3 cards per riga su schermi large
+            col-md-6 = 2 cards per riga su schermi medi
+            col-12 = 1 card per riga su mobile
+          -->
+            @for (customer of filteredCustomers; track customer.customerId) {
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- 
+                Card customer
+                (click) - Event binding: chiama viewCustomerDetails al click
+              -->
+                <div class="customer-card" (click)="viewCustomerDetails(customer)">
+
+                    <!-- Header card con avatar -->
+                    <div class="card-header-custom">
+                        <!-- Avatar con iniziali -->
+                        <div class="customer-avatar">
+                            {{ customer.firstName.charAt(0) }}{{ customer.lastName.charAt(0) }}
+                        </div>
+
+                        <!-- Badge status (opzionale) -->
+                        <span class="status-badge">
+                            <i class="fas fa-check-circle"></i>
+                            Active
+                        </span>
+                    </div>
+
+                    <!-- Body card con info -->
+                    <div class="card-body-custom">
+                        <!-- Nome completo -->
+                        <h5 class="customer-name">
+                            {{ customer.firstName }} {{ customer.lastName }}
+                        </h5>
+
+                        <!-- Azienda (se presente) -->
+                        @if (customer.companyName) {
+                        <p class="customer-company">
+                            <i class="fas fa-building me-2"></i>
+                            {{ customer.companyName }}
+                        </p>
+                        }
+
+                        <!-- Email -->
+                        <p class="customer-email">
+                            <i class="fas fa-envelope me-2"></i>
+                            {{ customer.emailAddress }}
+                        </p>
+
+                        <!-- Telefono (se presente) -->
+                        @if (customer.phone) {
+                        <p class="customer-phone">
+                            <i class="fas fa-phone me-2"></i>
+                            {{ customer.phone }}
+                        </p>
+                        }
+                    </div>
+
+                    <!-- Footer card con azioni -->
+                    <div class="card-footer-custom">
+                        <button class="btn-view-details">
+                            <i class="fas fa-eye me-2"></i>
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+
+        <!-- Messaggio se nessun customer trovato dopo filtro -->
+        @else {
+        <div class="empty-state">
+            <i class="fas fa-search fa-3x mb-3"></i>
+            <h3>No customers found</h3>
+            <p>Try adjusting your search filters</p>
+            @if (searchTerm) {
+            <button class="btn btn-primary" (click)="searchTerm = ''">
+                <i class="fas fa-times me-2"></i>
+                Clear Search
+            </button>
+            }
+        </div>
+        }
+        }
+    </div>
+</div>
+
+<!-- 
+  MODAL per dettagli customer
+  @if - Mostra il modal SOLO se selectedCustomer non è null
+-->
+@if (selectedCustomer) {
+<!-- Overlay scuro di sfondo -->
+<div class="modal-overlay" (click)="closeDetails()">
+    <!-- Modal content -->
+    <div class="modal-content-custom" (click)="$event.stopPropagation()">
+        <!-- Header modal -->
+        <div class="modal-header-custom">
+            <h3>
+                <i class="fas fa-user-circle me-2"></i>
+                Customer Details
+            </h3>
+            <button class="btn-close-modal" (click)="closeDetails()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Body modal con tutti i dettagli -->
+        <div class="modal-body-custom">
+            <!-- Avatar grande -->
+            <div class="detail-avatar">
+                {{ selectedCustomer.firstName.charAt(0) }}{{ selectedCustomer.lastName.charAt(0) }}
+            </div>
+
+            <!-- Info dettagliate -->
+            <div class="detail-row">
+                <span class="detail-label">
+                    <i class="fas fa-user me-2"></i>
+                    Full Name:
+                </span>
+                <span class="detail-value">
+                    {{ selectedCustomer.firstName }} {{ selectedCustomer.lastName }}
+                </span>
+            </div>
+
+            @if (selectedCustomer.companyName) {
+            <div class="detail-row">
+                <span class="detail-label">
+                    <i class="fas fa-building me-2"></i>
+                    Company:
+                </span>
+                <span class="detail-value">
+                    {{ selectedCustomer.companyName }}
+                </span>
+            </div>
+            }
+
+            <div class="detail-row">
+                <span class="detail-label">
+                    <i class="fas fa-envelope me-2"></i>
+                    Email:
+                </span>
+                <span class="detail-value">
+                    <a [href]="'mailto:' + selectedCustomer.emailAddress">
+                        {{ selectedCustomer.emailAddress }}
+                    </a>
+                </span>
+            </div>
+
+            @if (selectedCustomer.phone) {
+            <div class="detail-row">
+                <span class="detail-label">
+                    <i class="fas fa-phone me-2"></i>
+                    Phone:
+                </span>
+                <span class="detail-value">
+                    <a [href]="'tel:' + selectedCustomer.phone">
+                        {{ selectedCustomer.phone }}
+                    </a>
+                </span>
+            </div>
+            }
+
+            <div class="detail-row">
+                <span class="detail-label">
+                    <i class="fas fa-id-card me-2"></i>
+                    Customer ID:
+                </span>
+                <span class="detail-value">
+                    <code>{{ selectedCustomer.customerId }}</code>
+                </span>
+            </div>
+        </div>
+
+        <!-- Footer modal con azioni -->
+        <div class="modal-footer-custom">
+            <button class="btn btn-secondary" (click)="closeDetails()">
+                <i class="fas fa-times me-2"></i>
+                Close
+            </button>
+            <button class="btn btn-primary">
+                <i class="fas fa-edit me-2"></i>
+                Edit Customer
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+<!-- 
+  NOTA IMPORTANTE SU [(ngModel)]:
+  
+  Per usare [(ngModel)] devi importare FormsModule nel componente!
+  
+  Nel file .ts:
+  import { FormsModule } from '@angular/forms';
+  
+  @Component({
+    imports: [CommonModule, FormsModule]
+  })
+-->

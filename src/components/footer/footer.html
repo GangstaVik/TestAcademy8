@@ -1,0 +1,141 @@
+<!-- 
+  Template HTML del Footer
+  Struttura tipica di un footer professionale
+-->
+
+<footer class="footer-custom mt-5">
+    <div class="container py-5">
+        <div class="row">
+
+            <!-- 
+        Colonna 1: Informazioni aziendali 
+        col-md-4 = 4 colonne su 12 (33% larghezza) su schermi medi+
+        col-12 = 12 colonne su 12 (100% larghezza) su mobile
+      -->
+            <div class="col-md-4 col-12 mb-4">
+                <h5 class="footer-title">
+                    <i class="fas fa-bicycle me-2"></i>
+                    {{ appName }}
+                </h5>
+                <p class="footer-text">
+                    Your premier destination for bike commerce management.
+                    Built with Angular and modern web technologies.
+                </p>
+                <!-- Informazioni di contatto -->
+                <div class="contact-info">
+                    <p class="mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a [href]="'mailto:' + companyInfo.email" class="footer-link">
+                            {{ companyInfo.email }}
+                        </a>
+                    </p>
+                    <p class="mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        <a [href]="'tel:' + companyInfo.phone" class="footer-link">
+                            {{ companyInfo.phone }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Colonna 2: Link rapidi -->
+            <div class="col-md-4 col-12 mb-4">
+                <h5 class="footer-title">Quick Links</h5>
+                <ul class="footer-links-list">
+                    <!-- 
+            @for - Itera sull'array footerLinks
+            Crea un <li> per ogni link
+          -->
+                    @for (link of footerLinks; track $index) {
+                    <li>
+                        <!-- 
+                [href] - Property binding per settare dinamicamente l'href
+                {{ }} - String interpolation per stampare il label
+              -->
+                        <a [href]="link.route" class="footer-link">
+                            <i class="fas fa-chevron-right me-2"></i>
+                            {{ link.label }}
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Colonna 3: Social Media -->
+            <div class="col-md-4 col-12 mb-4">
+                <h5 class="footer-title">Follow Us</h5>
+                <p class="footer-text mb-3">
+                    Stay connected through our social media channels
+                </p>
+                <!-- Container icone social -->
+                <div class="social-links">
+                    <!-- 
+            @for - Itera sull'array socialLinks
+            (click) - Event binding: chiama openSocialLink al click
+            [title] - Property binding per il tooltip
+          -->
+                    @for (social of socialLinks; track $index) {
+                    <button class="social-icon" (click)="openSocialLink(social.url)" [title]="social.name">
+                        <!-- 
+                [ngClass] - Directive per applicare classi dinamicamente
+                Esempio: se social.icon = 'fa-facebook-f'
+                         verrà applicata la classe 'fa-facebook-f'
+              -->
+                        <i class="fab" [ngClass]="social.icon"></i>
+                    </button>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Separatore orizzontale -->
+        <hr class="footer-divider">
+
+        <!-- Copyright e crediti -->
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-bottom">
+                    <!-- Copyright con anno dinamico -->
+                    <p class="mb-0 text-center footer-copyright">
+                        © {{ currentYear }} {{ companyInfo.name }} - All rights reserved.
+                        <br>
+                        <small>Made with <i class="fas fa-heart text-danger"></i> by Your Team</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    Bottone "Back to Top"
+    (click) - Event binding: chiama scrollToTop() al click
+    Appare solo quando scrolla giù la pagina
+  -->
+    <button class="back-to-top" (click)="scrollToTop()" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</footer>
+
+<!-- 
+  SPIEGAZIONE GRID BOOTSTRAP:
+  
+  Bootstrap usa un sistema a 12 colonne:
+  - row: definisce una riga
+  - col-{breakpoint}-{numero}: definisce colonne
+  
+  Breakpoints:
+  - col-12: 100% larghezza su tutti gli schermi
+  - col-md-4: 33% larghezza su schermi medi (≥768px)
+  - col-lg-3: 25% larghezza su schermi large (≥992px)
+  
+  Esempio pratico:
+  <div class="col-md-6 col-12">
+    - Mobile: occupa 12 colonne (100% larghezza)
+    - Desktop: occupa 6 colonne (50% larghezza)
+  </div>
+  
+  RESPONSIVE DESIGN:
+  Il footer si adatta automaticamente:
+  - Mobile: 3 colonne impilate verticalmente
+  - Desktop: 3 colonne affiancate orizzontalmente
+-->

@@ -1,0 +1,99 @@
+<!-- 
+  Template HTML della Navbar
+  Usa Bootstrap 5 per lo styling responsive
+-->
+
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+
+        <!-- Logo/Brand dell'applicazione -->
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-bicycle me-2"></i>
+            {{ appName }}
+        </a>
+
+        <!-- 
+      Hamburger button per mobile
+      (click)="toggleMenu()" - Event binding: chiama il metodo toggleMenu() quando clicco
+      *ngClass - Directive: aggiunge classe CSS condizionalmente
+    -->
+        <button class="navbar-toggler" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 
+      Contenitore dei link di navigazione
+      [ngClass] - Property binding: aggiunge 'show' quando isMenuOpen è true
+      Questo fa aprire/chiudere il menu su mobile
+    -->
+        <div class="collapse navbar-collapse" [ngClass]="{'show': isMenuOpen}">
+
+            <!-- Lista link di navigazione -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <!-- 
+          @for - Nuova sintassi Angular 17+ per iterare
+          Cicla sull'array navLinks e crea un <li> per ogni elemento
+          track $index - necessario per Angular per ottimizzare il rendering
+        -->
+                @for (link of navLinks; track $index) {
+                <li class="nav-item">
+                    <!-- 
+              (click) - Event binding: chiama onLinkClick() quando clicco
+              [href] - Property binding: setta l'attributo href dinamicamente
+            -->
+                    <a class="nav-link" [href]="link.route" (click)="onLinkClick(link)">
+                        <!-- Icona FontAwesome -->
+                        <i class="fas" [ngClass]="link.icon"></i>
+                        <!-- {{ }} - String interpolation: stampa il valore della variabile -->
+                        {{ link.label }}
+                    </a>
+                </li>
+                }
+            </ul>
+
+            <!-- Sezione destra della navbar (user info, logout, ecc.) -->
+            <div class="d-flex align-items-center">
+                <!-- Badge utente -->
+                <span class="user-badge me-3">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="navbar-username">Guest</span>
+                </span>
+
+                <!-- Bottone logout -->
+                <button class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- 
+  SPIEGAZIONE SINTASSI ANGULAR:
+  
+  1. {{ variabile }} - String Interpolation
+     Stampa il valore di una variabile nel template
+     Esempio: {{ appName }} stampa "BikeCom"
+  
+  2. (evento)="metodo()" - Event Binding
+     Associa un evento DOM a un metodo del component
+     Esempio: (click)="toggleMenu()" chiama toggleMenu() al click
+  
+  3. [proprietà]="valore" - Property Binding
+     Setta una proprietà HTML dinamicamente
+     Esempio: [href]="link.route" setta l'href del link
+  
+  4. [(ngModel)]="variabile" - Two-Way Binding
+     Sincronizza input e variabile in entrambe le direzioni
+     Esempio: [(ngModel)]="username" (non usato qui ma utile saperlo)
+  
+  5. *ngIf / @if - Conditional Rendering
+     Mostra/nascondi elementi basandosi su una condizione
+     Esempio: @if (isLoggedIn) { <div>Welcome!</div> }
+  
+  6. *ngFor / @for - Loop Rendering
+     Itera su array e crea elementi
+     Esempio: @for (item of items; track item.id) { <li>{{item.name}}</li> }
+-->
